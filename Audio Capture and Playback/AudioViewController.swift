@@ -11,6 +11,7 @@ import UIKit
 import AVKit
 
 class AudioViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDelegate {
+    
     @IBOutlet weak var recordBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var playBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var statusLabel: UILabel!
@@ -66,6 +67,7 @@ class AudioViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecor
         }
     }
     
+    
     func initializeAudioRecorder() {
         let recordingSettings =
             [AVEncoderAudioQualityKey: AVAudioQuality.min.rawValue,
@@ -98,6 +100,8 @@ class AudioViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecor
         }
     }
     
+    
+    
     @IBAction func playButtonTapped(_ sender: Any) {
         guard let audioFileURL = audioFileURL else {
             presentAlert(message: "Audio file is not available to play.")
@@ -118,6 +122,7 @@ class AudioViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecor
             }
         }
         
+        
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: audioFileURL)
             audioPlayer?.delegate = self
@@ -130,6 +135,8 @@ class AudioViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecor
             return
         }
     }
+    
+    
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         recordBarButtonItem.isEnabled = true
